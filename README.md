@@ -112,3 +112,9 @@ F. Сумма двух
 find_sum$ python3 find_sum.py && cat output.txt
 ```
 
+Some tests:
+
+```bas
+find_sum$ python3 test_find_sum.py
+```
+

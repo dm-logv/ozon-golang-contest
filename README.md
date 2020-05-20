@@ -109,7 +109,7 @@ F. Сумма двух
 ### Solution
 
 ```bash
-find_sum$ python3 find_sum.py && cat output.txt
+find_sum$ go run find_sum.go && cat output.txt
 ```
 
 Some tests:

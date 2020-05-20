@@ -22,7 +22,7 @@ for i, (inp, target, output) in enumerate(tests):
         f.write(str(target) + '\n')
         f.write(str(inp))
         
-    call(['python3', 'find_sum.py'])
+    call(['go', 'run', 'find_sum.go'])
 
     result = None
     with open('output.txt') as f:

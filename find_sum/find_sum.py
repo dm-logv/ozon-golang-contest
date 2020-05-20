@@ -1,6 +1,5 @@
 target = None
 numbers = {}
-result = 0
 
 with open('input.txt') as f:
     target = int(f.readline())
@@ -8,12 +7,16 @@ with open('input.txt') as f:
         num = int(n)
         numbers[num] = numbers.setdefault(num, 0) + 1
 
-        rest = target - num
+        
+result = 0
 
-        if (num == rest and numbers[num] > 1
-            or num != rest and rest in numbers):
-            result = 1
-            break
+for i in numbers:
+    rest = target - i
+    
+    if i == rest and numbers[i] > 1:
+        result = 1
+    elif i != rest in numbers:
+        result = 1
 
 
 with open('output.txt', 'w') as f:

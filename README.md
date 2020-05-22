@@ -74,7 +74,7 @@ tags$ rm -f tags.db && sqlite3 -init tags_db.sql tags.db '.read tags.sql'
 ```
 
 
-## Find a sum
+## F. Find a sum
 ### Description
 
 ```
@@ -119,7 +119,7 @@ find_sum$ python3 test_find_sum.py
 ```
 
 
-## Suf of two numbers
+## D. Sum of two numbers
 ### Description
 
 ```

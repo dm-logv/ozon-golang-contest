@@ -6,9 +6,9 @@ Qualifying contest for the Ozon GoLang school
 ## A. Unique numbers
 ### Description 
 
+<details>
+<summary>A. Уникальное число</summary>
 ```
-A. Уникальное число
-
 Ограничение времени	1 секунда
 Ограничение памяти	64Mb
 Ввод	стандартный ввод или input-201.txt
@@ -34,6 +34,7 @@ stdout десятеричное число
 3
 2
 ```
+</details>
 
 ### Solution
 
@@ -46,9 +47,10 @@ unique_number$ cat input.txt | python3 unique_number.py
 ## B. Tags
 ### Description
 
-```
-B. Теги
+<details>
+<summary>B. Теги</summary>
 
+```
 Ограничение времени	1 секунда
 Ограничение памяти	64Mb
 Ввод	стандартный ввод или input.txt
@@ -63,6 +65,8 @@ B. Теги
 Формат ввода
 SQL-запрос.
 ```
+</details>
+
 
 ### Solution
 
@@ -77,9 +81,10 @@ tags$ rm -f tags.db && sqlite3 -init tags_db.sql tags.db '.read tags.sql'
 ## F. Find a sum
 ### Description
 
-```
-F. Сумма двух
+<details>
+<summary>F. Сумма двух</summary>
 
+```
 Ограничение времени	1 секунда
 Ограничение памяти	64Mb
 Ввод	input.txt
@@ -105,6 +110,8 @@ F. Сумма двух
 Название входной файл: input.txt
 Название выходной файл: output.txt
 ```
+</details>
+
 
 ### Solution
 
@@ -122,9 +129,10 @@ find_sum$ python3 test_find_sum.py
 ## D. Sum of two numbers
 ### Description
 
-```
-D. Сложение чисел
+<details>
+<summary>D. Сложение чисел</summary>
 
+```
 Ограничение времени	1 секунда
 Ограничение памяти	64Mb
 Ввод	стандартный ввод
@@ -156,6 +164,8 @@ D. Сложение чисел
 199     1
 200
 ```
+</details>
+
 
 ### Solution
 

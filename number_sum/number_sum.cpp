@@ -55,12 +55,12 @@ int main() {
   string a_str = splitted.first;
   string b_str = splitted.second;
   
-  stack<char> result;
-  
   stack<char>* a_digits = string_to_stack(a_str);
   stack<char>* b_digits = string_to_stack(b_str);
 
   int max_len = max(a_digits->size(), b_digits->size());
+
+  stack<char> result;
   char overflow = 0;
   char remainder = 0;
   

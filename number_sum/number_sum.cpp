@@ -41,11 +41,7 @@ int main() {
     result.push(overflow);
   }
 
-  while (!result.empty()) {
-    cout << (short) result.top();
-    result.pop();
-  }
-  
+  print_stack(result);
   
   return 0;
 }
@@ -69,4 +65,12 @@ char pop_or_zero(stack<char> &stack) {
     stack.pop();
   }
   return value;
+}
+
+
+void print_stack(stack<char> &stack) {
+  while (!result.empty()) {
+    cout << (short) result.top();
+    result.pop();
+  }
 }

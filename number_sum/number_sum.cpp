@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <utility>
 
 using namespace std;
 
@@ -8,15 +9,52 @@ string DELIM = " ";
 char   ZERO_CODE = 48;
 
 
+pair<string, string> split_string(string &delim, string &line) {
+  size_t delim_position = line.find(DELIM);
+
+  return make_pair(
+      line.substr(0, delim_position),
+      line.substr(delim_position + 1));
+}
+
+
+stack<char>* string_to_stack(string s) {
+  stack<char>* digits = new stack<char>;
+  
+  for(string::size_type i = 0; i < s.size(); i++){
+    digits->push(s[i] - ZERO_CODE);
+  }
+
+  return digits;
+}
+
+
+char pop_or_zero(stack<char> &stack) {
+  char value = 0;
+  if (stack.size() > 0) {
+    value = stack.top();
+    stack.pop();
+  }
+  return value;
+}
+
+
+void print_stack(stack<char> &stack) {
+  while (!stack.empty()) {
+    cout << (short) stack.top();
+    stack.pop();
+  }
+}
+
+
 int main() {
   string line;
   getline(cin, line);
 
-  size_t delim_position = line.find(DELIM);
-
-  string a_str = line.substr(0, delim_position);
-  string b_str = line.substr(delim_position + 1);
-
+  pair<string, string> splitted = split_string(DELIM, line);
+  string a_str = splitted.first;
+  string b_str = splitted.second;
+  
   stack<char> result;
   
   stack<char>* a_digits = string_to_stack(a_str);
@@ -46,31 +84,3 @@ int main() {
   return 0;
 }
 
-
-stack<char>* string_to_stack(string &s) {
-  stack<char>* digits = new stack<char>;
-  
-  for(string::size_type i = 0; i < s.size(); i++){
-    digits->push(s[i] - ZERO_CODE);
-  }
-
-  return digits;
-}
-
-
-char pop_or_zero(stack<char> &stack) {
-  char value = 0;
-  if (stack.size() > 0) {
-    value = stack.top();
-    stack.pop();
-  }
-  return value;
-}
-
-
-void print_stack(stack<char> &stack) {
-  while (!result.empty()) {
-    cout << (short) result.top();
-    result.pop();
-  }
-}

@@ -81,55 +81,6 @@ tags$ rm -f tags.db && sqlite3 -init tags_db.sql tags.db '.read tags.sql'
 ```
 
 
-## F. Find a sum
-### Description
-
-<details>
-<summary>F. Сумма двух</summary>
-
-```
-Ограничение времени	1 секунда
-Ограничение памяти	64Mb
-Ввод	input.txt
-Вывод	output.txt
-
-Дано целое положительное число "target". Также дана последовательность из целых положительных чисел. Необходимо записать в выходной файл "1", если в последовательности есть два числа сумма, которых равна значению "target" или "0" если таких нет.
-
-
-Формат ввода
-
-5
-1 7 3 4 7 9
-
-Формат вывода
-
-1
-
-
-Примечания
-
-Все числа используемы в задаче находятся в диапазоне 0 < N < 999999999
-
-Название входной файл: input.txt
-Название выходной файл: output.txt
-```
-
-</details>
-
-
-### Solution
-
-```bash
-find_sum$ go run find_sum.go && cat output.txt
-```
-
-Some tests:
-
-```bash
-find_sum$ python3 test_find_sum.py
-```
-
-
 ## D. Sum of two numbers
 ### Description
 
@@ -183,4 +134,53 @@ Tests:
 
 ```bash
 number_sum$ python3 test_number_sum.py
+```
+
+
+## F. Find a sum
+### Description
+
+<details>
+<summary>F. Сумма двух</summary>
+
+```
+Ограничение времени	1 секунда
+Ограничение памяти	64Mb
+Ввод	input.txt
+Вывод	output.txt
+
+Дано целое положительное число "target". Также дана последовательность из целых положительных чисел. Необходимо записать в выходной файл "1", если в последовательности есть два числа сумма, которых равна значению "target" или "0" если таких нет.
+
+
+Формат ввода
+
+5
+1 7 3 4 7 9
+
+Формат вывода
+
+1
+
+
+Примечания
+
+Все числа используемы в задаче находятся в диапазоне 0 < N < 999999999
+
+Название входной файл: input.txt
+Название выходной файл: output.txt
+```
+
+</details>
+
+
+### Solution
+
+```bash
+find_sum$ go run find_sum.go && cat output.txt
+```
+
+Some tests:
+
+```bash
+find_sum$ python3 test_find_sum.py
 ```

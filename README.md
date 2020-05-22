@@ -8,6 +8,7 @@ Qualifying contest for the Ozon GoLang school
 
 <details>
 <summary>A. Уникальное число</summary>
+
 ```
 Ограничение времени	1 секунда
 Ограничение памяти	64Mb
@@ -34,6 +35,7 @@ stdout десятеричное число
 3
 2
 ```
+
 </details>
 
 ### Solution
@@ -65,6 +67,7 @@ unique_number$ cat input.txt | python3 unique_number.py
 Формат ввода
 SQL-запрос.
 ```
+
 </details>
 
 
@@ -110,6 +113,7 @@ tags$ rm -f tags.db && sqlite3 -init tags_db.sql tags.db '.read tags.sql'
 Название входной файл: input.txt
 Название выходной файл: output.txt
 ```
+
 </details>
 
 
@@ -164,6 +168,7 @@ find_sum$ python3 test_find_sum.py
 199     1
 200
 ```
+
 </details>
 
 

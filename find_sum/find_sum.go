@@ -20,23 +20,19 @@ func main() {
 	scanner.Split(bufio.ScanWords)
 	scanner.Scan()
 
-	var target int32
+	var target int
 
-	if target64, err := strconv.ParseInt(scanner.Text(), 10, 32); err != nil {
+	if target, err = strconv.Atoi(scanner.Text()); err != nil {
 		panic(err)
-	} else {
-		target = int32(target64)
 	}
 
-	numbers := make(map[int32]int)
+	numbers := make(map[int]int)
+
+	var num int
 
 	for scanner.Scan() {
-		var num int32
-
-		if num64, err := strconv.ParseInt(scanner.Text(), 10, 32); err != nil {
+		if num, err = strconv.Atoi(scanner.Text()); err != nil {
 			panic(err)
-		} else {
-			num = int32(num64)
 		}
 
 		num_times, ok := numbers[num]

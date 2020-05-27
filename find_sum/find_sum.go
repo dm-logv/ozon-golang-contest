@@ -15,6 +15,8 @@ func main() {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
+	buf := make([]byte, 1024*1024)
+	scanner.Buffer(buf, 12)
 	scanner.Split(bufio.ScanWords)
 	scanner.Scan()
 

@@ -176,7 +176,7 @@ number_sum$ python3 test_number_sum.py
 ### Solution
 
 ```bash
-find_sum$ go run find_sum.go && cat output.txt
+find_sum$ c++ -o find_sum find_sum.cpp && ./find_sum && cat output.txt
 ```
 
 Some tests:

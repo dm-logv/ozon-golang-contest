@@ -1,23 +1,8 @@
 package main
 
 type Calc struct {
-	fx1 *int
-	fx2 *int
-}
-
-func NewCalc(in1 <-chan int, in2 <-chan int, f func(int) int) *Calc {
-	c := Calc{nil, nil}
-
-	go func(c *Calc, in1 <-chan int) {
-		fx1 := f(<-in1)
-		c.fx1 = &fx1
-	}(&c, in1)
-	go func(c *Calc, in2 <-chan int) {
-		fx2 := f(<-in2)
-		c.fx2 = &fx2
-	}(&c, in2)
-
-	return &c
+	x1 *int
+	x2 *int
 }
 
 func Merge2Channels(f func(int) int, in1 <-chan int,
@@ -29,7 +14,49 @@ func Merge2Channels(f func(int) int, in1 <-chan int,
 		calcs := make([]*Calc, n)
 
 		for i := 0; i < n; i++ {
-			calcs[i] = NewCalc(in1, in2, f)
+			calcs[i] = &Calc{nil, nil}
 		}
+
+		completed := make(chan *Calc, n*2)
+		go read_channel(&calcs, 1, in1, n, f, completed)
+		go read_channel(&calcs, 2, in2, n, f, completed)
+
+		go printer(completed, out, n)
 	}(f, in1, in2, out, n)
+}
+
+func read_channel(calcs *[]*Calc, field int, ch <-chan int,
+	n int, f func(int) int, completed chan *Calc) {
+	for i := 0; i < n; i++ {
+		x := <-ch
+
+		go func(x int, i int) {
+			fx := f(x)
+			c := (*calcs)[i]
+
+			if field == 1 {
+				c.x1 = &fx
+			} else if field == 2 {
+				c.x2 = &fx
+			}
+
+			completed <- c
+		}(x, i)
+	}
+}
+
+func printer(completed chan *Calc, out chan<- int, n int) {
+	printed := 0
+	for {
+		c := <-completed
+
+		if c.x1 != nil && c.x2 != nil {
+			out <- *c.x1 + *c.x2
+			printed++
+		}
+
+		if printed == n {
+			break
+		}
+	}
 }

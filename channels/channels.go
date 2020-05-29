@@ -37,11 +37,13 @@ func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
 
 		if x1 != nil && x2 != nil {
 			out <- *x1 + *x2
-			printed++
+
+			printed += 2
 		}
 
-		if printed == n-1 {
-			close(completed)
+		if printed == n*2 {
+			return
 		}
+
 	}
 }

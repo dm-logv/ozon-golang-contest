@@ -25,7 +25,7 @@ func read_channel(calcs []*int, shift int, ch <-chan int,
 
 	log.Println("Reader started", shift)
 
-	for i := 0; i < n; i++ {
+	for i := 0; i <= n; i++ {
 		x := <-ch
 
 		go func(x int, i int) {
@@ -46,18 +46,21 @@ func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
 
 	printed := 0
 	for <-completed {
-		x1, x2 := calcs[printed], calcs[printed+1]
+		for i := printed; i <= n*2; i += 2 {
+			x1, x2 := calcs[i], calcs[i+1]
 
-		if x1 != nil && x2 != nil {
-			log.Println("x1, x2, printed", *x1, *x2, printed)
+			if x1 != nil && x2 != nil {
+				log.Println("x1, x2, printed", *x1, *x2, printed)
 
-			out <- (*x1 + *x2)
+				out <- (*x1 + *x2)
+				printed += 2
+			} else {
+				break
+			}
 
-			printed += 2
-		}
-
-		if printed == n*2 {
-			return
+			if printed == n*2 {
+				return
+			}
 		}
 	}
 

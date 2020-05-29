@@ -1,10 +1,14 @@
 package main
 
+import "log"
+
 func Merge2Channels(f func(int) int, in1 <-chan int,
 	in2 <-chan int, out chan<- int, n int) {
 
 	go func(f func(int) int, in1 <-chan int,
 		in2 <-chan int, out chan<- int, n int) {
+
+		log.Println("Started, n", n)
 
 		calcs := make([]*int, n*2)
 		completed := make(chan bool, n*2)
@@ -24,10 +28,15 @@ func read_channel(calcs []*int, shift int, ch <-chan int,
 
 		go func(x int, i int) {
 			fx := f(x)
+
+			log.Println("i, x, fx", i, x, fx)
+
 			calcs[i+shift] = &fx
 			completed <- true
 		}(x, i)
 	}
+
+	log.Println(shift, "read done")
 }
 
 func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
@@ -36,14 +45,15 @@ func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
 		x1, x2 := calcs[printed], calcs[printed+1]
 
 		if x1 != nil && x2 != nil {
+			log.Println("x1, x2, printed", *x1, *x2, printed)
+
 			out <- *x1 + *x2
 
 			printed += 2
 		}
 
-		if printed == n*2 {
+		if printed == n*2-1 {
 			return
 		}
-
 	}
 }

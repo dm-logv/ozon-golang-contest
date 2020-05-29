@@ -22,11 +22,11 @@ func read_channel(calcs *[]*int, shift int, ch <-chan int,
 	for i := 0; i < n; i++ {
 		x := <-ch
 
-		go func(x int, calcs *[]*int) {
+		go func(x int, i int) {
 			fx := f(x)
 			(*calcs)[i+shift] = &fx
 			completed <- true
-		}(x, calcs)
+		}(x, i)
 	}
 }
 
@@ -43,6 +43,5 @@ func printer(calcs *[]*int, completed chan bool, out chan<- int, n int) {
 		if printed == n-1 {
 			close(completed)
 		}
-
 	}
 }

@@ -23,6 +23,8 @@ func Merge2Channels(f func(int) int, in1 <-chan int,
 func read_channel(calcs []*int, shift int, ch <-chan int,
 	n int, f func(int) int, completed chan bool) {
 
+	log.Println("Reader started", shift)
+
 	for i := 0; i < n; i++ {
 		x := <-ch
 
@@ -40,6 +42,8 @@ func read_channel(calcs []*int, shift int, ch <-chan int,
 }
 
 func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
+	log.Println("Printer started")
+
 	printed := 0
 	for <-completed {
 		x1, x2 := calcs[printed], calcs[printed+1]
@@ -47,13 +51,15 @@ func printer(calcs []*int, completed chan bool, out chan<- int, n int) {
 		if x1 != nil && x2 != nil {
 			log.Println("x1, x2, printed", *x1, *x2, printed)
 
-			out <- *x1 + *x2
+			out <- (*x1 + *x2)
 
 			printed += 2
 		}
 
-		if printed == n*2-1 {
+		if printed == n*2 {
 			return
 		}
 	}
+
+	log.Println("Print done")
 }

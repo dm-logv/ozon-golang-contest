@@ -189,6 +189,9 @@ find_sum$ python3 test_find_sum.py
 ## E. Channels
 ### Description
 
+> Part E did not solved, the latest solution causes WA result :-(
+
+
 <details>
 <summary>E. 2 канала</summary>
 
